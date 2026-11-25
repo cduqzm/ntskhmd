@@ -1,0 +1,50 @@
+<UserControl x:Class="ValCC.ColorPicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel>
+        <Grid x:Name="ColorArea"
+              Height="120"
+              Background="Transparent"
+              Cursor="Cross"
+              MouseLeftButtonDown="ColorArea_MouseLeftButtonDown"
+              MouseMove="ColorArea_MouseMove"
+              MouseLeftButtonUp="ColorArea_MouseLeftButtonUp"
+              SizeChanged="ColorArea_SizeChanged">
+            <Rectangle x:Name="HueLayer" />
+            <Rectangle Fill="{StaticResource SaturationOverlayBrush}" />
+            <Rectangle Fill="{StaticResource BrightnessOverlayBrush}" />
+            <Border BorderBrush="{StaticResource LinkBorderBrush}" BorderThickness="1" />
+            <Canvas>
+                <Grid x:Name="Marker" Width="14" Height="14" IsHitTestVisible="False">
+                    <Ellipse Stroke="{StaticResource PickerRingDarkBrush}" StrokeThickness="1" />
+                    <Ellipse Margin="2" Stroke="{StaticResource PickerRingLightBrush}" StrokeThickness="1" />
+                </Grid>
+            </Canvas>
+        </Grid>
+
+        <Slider x:Name="HueSlider"
+                Margin="0,10,0,0"
+                Style="{StaticResource HueSlider}"
+                ValueChanged="HueSlider_ValueChanged" />
+
+        <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+            <Border x:Name="Swatch"
+                    Width="41.6"
+                    Height="41.6"
+                    BorderBrush="{StaticResource LinkBorderBrush}"
+                    BorderThickness="1" />
+            <TextBox x:Name="HexBox"
+                     Width="104"
+                     Margin="8,0,0,0"
+                     MaxLength="7"
+                     CharacterCasing="Lower"
+                     TextChanged="HexBox_TextChanged"
+                     LostKeyboardFocus="HexBox_LostKeyboardFocus"
+                     KeyDown="HexBox_KeyDown" />
+            <TextBlock x:Name="RgbText"
+                       Margin="12,0,0,0"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource LabelText}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>
