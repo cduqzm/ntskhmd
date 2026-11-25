@@ -32,7 +32,7 @@ jobs:
 
       - name: Build ntskhmd.zip
         run: |
-          dotnet publish ValCC.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -p:DebugType=none -o ntskhmd
+          dotnet publish ValCC.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -p:DebugType=none -o ntskhmd
           pwsh -Command "Compress-Archive -Path ntskhmd -DestinationPath ntskhmd.zip"
 
       - name: Create release
